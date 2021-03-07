@@ -1,8 +1,10 @@
-package com.example.oscarapp;
+package com.example.oscarapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.oscarapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
