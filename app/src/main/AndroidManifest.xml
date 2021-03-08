@@ -13,9 +13,9 @@
         android:theme="@style/Theme.OscarApp">
         <activity android:name=".activity.DetalheFilme"></activity>
         <activity android:name=".activity.ListaFilme" />
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.DiretorActivity"></activity>
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.DiretorActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

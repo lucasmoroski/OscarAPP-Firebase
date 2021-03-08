@@ -13,7 +13,7 @@ import com.example.oscarapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnDiretor;
+    private Button btnDiretor,btnFilmes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 //        emailUser = (EditText) findViewById(R.id.emailUser);
 //        senhaUser = (EditText) findViewById(R.id.senhaUser);
         btnDiretor = (Button) findViewById(R.id.btnDiretor);
+        btnFilmes = (Button) findViewById(R.id.btnFilme);
 //       txtResetSenha = (Button) findViewById(R.id);
     }
 
@@ -39,6 +40,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, DiretorActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+        btnFilmes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainActivity.this, ListaFilme.class);
                 startActivity(i);
                 finish();
             }

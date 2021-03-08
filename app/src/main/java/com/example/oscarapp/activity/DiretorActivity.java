@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.assist.AssistStructure;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -39,14 +41,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DiretorActivity extends AppCompatActivity {
 
     RadioGroup radioGroup;
-    TextView txt;
+    TextView txt,escolhaD;
+    Button btnValida;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diretor);
-        radioGroup = (RadioGroup) findViewById(R.id.radioGroupid);
-        txt = (TextView) findViewById(R.id.teste);
-//        startComponent();
+        startComponent();
 //        iniciaDiretor();
 
         String urlPrincipal = "http://wecodecorp.com.br/";
@@ -79,10 +81,37 @@ public class DiretorActivity extends AppCompatActivity {
 
             }
         });
+
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                int idradio = radioGroup.getCheckedRadioButtonId();
+                RadioButton radioescolhaD = (RadioButton) findViewById(idradio);
+                int rescolhaD = radioescolhaD.getId();
+//                escolhaD.setText(""+rescolhaD);
+                escolhaD.setText(radioescolhaD.getText().toString());
+            }
+        });
+
+        btnValida.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int idradio = radioGroup.getCheckedRadioButtonId();
+                RadioButton radioescolhaD = (RadioButton) findViewById(idradio);
+                int rescolhaD = radioescolhaD.getId();
+            }
+        });
+
+
     }
 
     private void startComponent() {
 //        RadioGroup radioGroup = (RadioGroup) findViewById(R.id.radioGroupid);
+        radioGroup = (RadioGroup) findViewById(R.id.radioGroupid);
+        txt = (TextView) findViewById(R.id.teste);
+        escolhaD = (TextView) findViewById(R.id.escolhaDire);
+        btnValida = (Button) findViewById(R.id.btnValida);
     }
 
     private void alert(String s) {
