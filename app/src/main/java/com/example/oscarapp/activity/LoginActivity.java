@@ -3,6 +3,7 @@ package com.example.oscarapp.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -38,37 +39,42 @@ public class LoginActivity extends AppCompatActivity {
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = emailUser.getText().toString().trim();
-                String senha = senhaUser.getText().toString().trim();
-                login(email,senha);
+            String email = emailUser.getText().toString().trim();
+            String senha = senhaUser.getText().toString().trim();
+                if (email.isEmpty() || senha.isEmpty()) {
+                    alert("Favor inserir Email e Senha.");
+                } else {
+                    login(email, senha);
+                }
             }
-
         });
+
     }
 
     private void login(String email, String senha) {
-        auth.signInWithEmailAndPassword(email,senha)
-                .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(i);
-                        }else {
-                            alert("Email ou Senha errados!");
-                        }
+            auth.signInWithEmailAndPassword(email, senha)
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Intent i = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(i);
+                    } else {
+                        alert("Email ou Senha incorreto!");
+//                        startActivity(null);
                     }
-                });
+                }
+            });
     }
 
-    private void alert(String s){
-        Toast.makeText(LoginActivity.this,s,Toast.LENGTH_SHORT).show();
+    private void alert(String s) {
+        Toast.makeText(LoginActivity.this, s, Toast.LENGTH_SHORT).show();
     }
 
     private void startComponent() {
-       emailUser = (EditText) findViewById(R.id.emailUser);
-       senhaUser = (EditText) findViewById(R.id.senhaUser);
-       btnEntrar = (Button) findViewById(R.id.btnEntrar);
+        emailUser = (EditText) findViewById(R.id.emailUser);
+        senhaUser = (EditText) findViewById(R.id.senhaUser);
+        btnEntrar = (Button) findViewById(R.id.btnEntrar);
 //       txtResetSenha = (Button) findViewById(R.id);
     }
 
